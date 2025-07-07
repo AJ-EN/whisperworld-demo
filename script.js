@@ -24,6 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
 
+    // --- Back to Top Button ---
+    const backToTopButton = document.querySelector('.back-to-top-btn');
+
+    if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+            // Show button if user has scrolled down more than the viewport height
+            if (window.scrollY > window.innerHeight) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        }, { passive: true });
+    }
+
     const animatedSections = document.querySelectorAll('.fade-in-section');
 
     if (!animatedSections.length) return;
