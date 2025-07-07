@@ -1,12 +1,34 @@
 /* General Body & Typography */
 :root {
+    /* Light Theme (Default) */
     --bg-color: #FFFFFF;
     --bg-light: #F8F9FA;
-    --text-color: #212529;
-    --text-muted: #6c757d;
+    --text-color: #1d1d1f;
+    --text-muted: #6e6e73;
     --accent-color: #007AFF;
+    --accent-color-light: rgba(0, 122, 255, 0.1);
     --border-color: #DEE2E6;
     --card-bg: #FFFFFF;
+    --header-bg: rgba(255, 255, 255, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --hero-gradient-end: var(--bg-light);
+    --mockup-img-filter: none;
+}
+
+body.dark-mode {
+    /* Dark Theme */
+    --bg-color: #161617;
+    --bg-light: #1d1d1f;
+    --text-color: #f5f5f7;
+    --text-muted: #86868b;
+    --accent-color: #0A84FF;
+    --accent-color-light: rgba(10, 132, 255, 0.2);
+    --border-color: #3a3a3c;
+    --card-bg: #1d1d1f;
+    --header-bg: rgba(22, 22, 23, 0.8);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --hero-gradient-end: var(--bg-color);
+    --mockup-img-filter: invert(1) hue-rotate(180deg);
 }
 
 html {
@@ -65,7 +87,7 @@ a:hover {
     width: 100%;
     z-index: 100;
     padding: 20px 0;
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--header-bg);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
@@ -75,6 +97,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 .logo {
@@ -82,11 +105,32 @@ a:hover {
     font-weight: 600;
     color: var(--text-color);
 }
-
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 .nav-link {
     font-size: 0.9rem;
     font-weight: 500;
 }
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+}
+.theme-toggle:hover { transform: scale(1.1); }
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+body.dark-mode .theme-toggle .icon-sun { display: block; }
+body.dark-mode .theme-toggle .icon-moon { display: none; }
 
 /* Sections */
 .content-section {
@@ -119,13 +163,14 @@ a:hover {
 .hero-section {
     padding: 200px 0;
     text-align: center;
-    background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-light) 100%);
+    background: linear-gradient(180deg, var(--bg-color) 0%, var(--hero-gradient-end) 100%);
 }
 
 .hero-headline {
     font-size: 4rem;
-    font-weight: 700;
+    font-weight: 600; /* Slightly thinner for large size elegance */
     margin-bottom: 0.25em;
+    letter-spacing: -0.025em; /* Tighter tracking for headlines */
 }
 
 .hero-tagline {
@@ -140,6 +185,12 @@ a:hover {
     font-size: 1.1rem;
 }
 
+.hero-section .container {
+    /* For parallax effect performance */
+    will-change: transform, opacity;
+    transition: opacity 0.3s linear;
+}
+
 .cta-button {
     background-color: var(--accent-color);
     color: #fff;
@@ -151,8 +202,7 @@ a:hover {
 }
 
 .cta-button:hover {
-    transform: scale(1.05);
-    background-color: #0056b3;
+    background-color: #0071e3;
     color: #fff;
 }
 
@@ -197,12 +247,20 @@ a:hover {
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 25px var(--shadow-color);
 }
 
 .feature-icon {
-    font-size: 2rem;
-    margin-bottom: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    background-color: var(--accent-color-light);
+    color: var(--accent-color);
+    border-radius: 50%;
 }
 
 .feature-card h3 {
@@ -219,24 +277,23 @@ a:hover {
 .mockup-card { text-align: center; }
 .mockup-card h4 { margin-top: 20px; font-size: 1.1rem; }
 .mockup-card p { font-size: 0.9rem; }
-.mockup-image {
-    height: 400px;
+
+.mockup-image-container {
     border-radius: 25px;
-    background-color: var(--bg-light);
+    overflow: hidden;
     border: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 500;
-    color: var(--text-muted);
-    background-size: cover;
-    background-position: center;
-    font-size: 1.2rem;
+    background-color: var(--bg-light);
+    box-shadow: 0 4px 12px var(--shadow-color);
 }
-.mockup-discover { background-image: url('https://placehold.co/400x600/F8F9FA/F8F9FA'); }
-.mockup-playing { background-image: url('https://placehold.co/400x600/F8F9FA/F8F9FA'); }
-.mockup-history { background-image: url('https://placehold.co/400x600/F8F9FA/F8F9FA'); }
-.mockup-settings { background-image: url('https://placehold.co/400x600/F8F9FA/F8F9FA'); }
+
+.mockup-image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 400 / 600;
+    filter: var(--mockup-img-filter);
+    transition: filter 0.5s ease;
+}
 
 /* Tech Section */
 .tech-grid {
@@ -333,8 +390,48 @@ a:hover {
 @media (max-width: 768px) {
     .hero-headline { font-size: 3rem; }
     .section-header h2 { font-size: 2rem; }
-    .flow-diagram { flex-direction: column; align-items: center; gap: 0; }
-    .flow-arrow { transform: rotate(90deg); margin: 0; }
+
+    .flow-diagram {
+        flex-direction: column;
+        align-items: stretch; /* Let items take full width */
+        gap: 30px; /* Add space between steps */
+        position: relative;
+        padding-left: 60px; /* Space for the line and icons */
+        max-width: 400px; /* Constrain width on mobile for readability */
+        margin: 0 auto; /* Center the container */
+    }
+
+    .flow-diagram::before {
+        content: '';
+        position: absolute;
+        left: 25px; /* Center of the padding area */
+        top: 20px;
+        bottom: 20px;
+        width: 2px;
+        background-color: var(--border-color);
+        z-index: 0;
+    }
+
+    .flow-arrow { display: none; }
+
+    .flow-step {
+        text-align: left;
+        max-width: none;
+        position: relative;
+    }
+
+    .flow-icon {
+        position: absolute;
+        left: -60px; /* Match padding-left */
+        top: -5px;
+        font-size: 2rem;
+        width: 50px; /* Width of the icon area */
+        text-align: center; /* Center the emoji */
+        background-color: var(--bg-color); /* Punch a hole in the line */
+        z-index: 1; /* Make sure it's above the line */
+        margin: 0;
+    }
+
     .tech-grid { grid-template-columns: 1fr; }
 }
 

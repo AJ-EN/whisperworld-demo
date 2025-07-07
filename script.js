@@ -1,4 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Theme Toggling ---
+    const themeToggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+
+    const applyTheme = (theme) => {
+        body.classList.toggle('dark-mode', theme === 'dark');
+        localStorage.setItem('theme', theme);
+        // Notify particle system of theme change
+        if (window.updateParticleColors) {
+            window.updateParticleColors();
+        }
+    };
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const newTheme = body.classList.contains('dark-mode') ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+    }
+
+    // Load saved theme or detect OS preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
     const animatedSections = document.querySelectorAll('.fade-in-section');
 
     if (!animatedSections.length) return;
@@ -46,29 +71,55 @@ document.addEventListener('DOMContentLoaded', () => {
         timelineItems.forEach(item => timelineObserver.observe(item));
     }
 
+    // --- Hero Parallax Effect ---
+    const heroContent = document.querySelector('.hero-section .container');
+    if (heroContent) {
+        window.addEventListener('scroll', () => {
+            // Use requestAnimationFrame for smoother animations
+            requestAnimationFrame(() => {
+                const scrollPosition = window.scrollY;
+                // Only apply effect when scrolling down from the top (within the viewport height)
+                if (scrollPosition < window.innerHeight) {
+                    // Move the content down at a slower speed (e.g., 0.4x)
+                    heroContent.style.transform = `translateY(${scrollPosition * 0.4}px)`;
+                    // Fade out the content as it scrolls away for a smoother transition
+                    heroContent.style.opacity = 1 - (scrollPosition / (window.innerHeight / 1.5));
+                }
+            });
+        }, { passive: true }); // Improve scroll performance
+    }
+
     // --- Particle Animation ---
     const canvas = document.getElementById('particle-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let particlesArray;
         let accentColorRgb;
+        let borderColorRgb;
 
-        // Function to parse the accent color from CSS variables into an RGB object
-        function getAccentColor() {
-            const accentColorHex = getComputedStyle(document.documentElement).getPropertyValue('--accent-color').trim();
+        // Function to parse a color from CSS variables into an RGB object
+        function parseColor(colorVar) {
+            const accentColorHex = getComputedStyle(document.documentElement).getPropertyValue(colorVar).trim();
             if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(accentColorHex)) {
                 let hex = accentColorHex.substring(1);
                 if (hex.length === 3) {
                     hex = hex.split('').map(char => char + char).join('');
                 }
                 const bigint = parseInt(hex, 16);
-                accentColorRgb = {
+                return {
                     r: (bigint >> 16) & 255,
                     g: (bigint >> 8) & 255,
                     b: bigint & 255
                 };
             }
+            return null;
         }
+
+        // Expose a function to update colors on theme change
+        window.updateParticleColors = () => {
+            accentColorRgb = parseColor('--accent-color');
+            borderColorRgb = parseColor('--border-color');
+        };
 
         // Mouse interactive object
         let mouse = {
@@ -103,9 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Method to draw individual particle
             draw() {
+                if (!borderColorRgb) return;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--border-color');
+                ctx.fillStyle = `rgb(${borderColorRgb.r}, ${borderColorRgb.g}, ${borderColorRgb.b})`;
                 ctx.fill();
             }
 
@@ -156,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Check if particles are close enough to draw line between them
         function connect() {
+            if (!borderColorRgb) return;
             let opacityValue = 1;
             for (let a = 0; a < particlesArray.length; a++) {
                 for (let b = a; b < particlesArray.length; b++) {
@@ -164,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     if (distance < (canvas.width / 8) * (canvas.height / 8)) {
                         opacityValue = 1 - (distance / 20000);
-                        let lineColor = `rgba(222, 226, 230, ${opacityValue})`; // Default border color
+                        let lineColor = `rgba(${borderColorRgb.r}, ${borderColorRgb.g}, ${borderColorRgb.b}, ${opacityValue})`;
 
                         // Check if either particle is near the mouse to "light up" the line
                         if (mouse.x !== null && mouse.y !== null && accentColorRgb) {
@@ -199,10 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', () => {
             canvas.width = innerWidth;
             canvas.height = innerHeight;
-            getAccentColor(); // Re-check color in case of theme change
+            window.updateParticleColors(); // Re-check color in case of theme change
             init();
         });
-        getAccentColor();
+        window.updateParticleColors();
         init();
         animate();
     }
