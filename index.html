@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhisperWorld - Concept</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <canvas id="particle-canvas"></canvas>
+
+    <header class="main-header">
+      <nav class="container">
+        <a href="#hero" class="logo">WhisperWorld</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="hero" class="hero-section">
+        <div class="container text-center">
+          <h1 class="hero-headline">WhisperWorld</h1>
+          <p class="hero-tagline">
+            Let the world whisper its secrets as you pass by.
+          </p>
+          <p class="hero-description">
+            An audio-augmented reality companion that delivers location-aware
+            facts through spatial audio, transforming your everyday journeys
+            into discoveries.
+          </p>
+          <a href="#concept" class="cta-button">Explore the Concept</a>
+        </div>
+      </section>
+
+      <!-- App Concept Section -->
+      <section id="concept" class="content-section fade-in-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>App Concept</h2>
+          </div>
+          <div class="concept-overview">
+            <p>
+              WhisperWorld reimagines how we experience our surroundings by
+              delivering bite-sized, context-relevant audio facts through your
+              AirPods as you move through the world. Using spatial audio
+              technology, these facts appear to emanate from the physical
+              direction of landmarks themselves, creating a seamless blend of
+              the digital and physical worlds.
+            </p>
+            <p>
+              Unlike traditional audio guides that require active engagement and
+              planning, WhisperWorld operates in the background, intelligently
+              determining which nearby landmarks merit attention based on your
+              interests, the landmark's significance, and your current context.
+              The result is a delightful layer of discovery added to your
+              everyday routes and explorations.
+            </p>
+            <p>
+              WhisperWorld embodies the principles of "calm technology" -
+              enhancing your awareness without demanding your attention,
+              allowing you to keep your eyes up and engaged with the world
+              around you.
+            </p>
+          </div>
+
+          <h3 class="subsection-title">How It Works</h3>
+          <div class="flow-diagram">
+            <div class="flow-step">
+              <div class="flow-icon" aria-hidden="true">📍</div>
+              <h4>1. Detect Location</h4>
+              <p>Your position and heading are monitored in the background.</p>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-step">
+              <div class="flow-icon" aria-hidden="true">🏞️</div>
+              <h4>2. Identify Landmarks</h4>
+              <p>Nearby points of interest are identified within geofences.</p>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-step">
+              <div class="flow-icon" aria-hidden="true">🧠</div>
+              <h4>3. Calculate Relevance</h4>
+              <p>
+                Our context engine determines which landmarks merit attention.
+              </p>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-step">
+              <div class="flow-icon" aria-hidden="true">🎧</div>
+              <h4>4. Deliver Audio</h4>
+              <p>
+                Brief facts are delivered through spatial audio via your
+                AirPods.
+              </p>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-step">
+              <div class="flow-icon" aria-hidden="true">📈</div>
+              <h4>5. Learn & Adapt</h4>
+              <p>
+                The system learns from your interactions to improve future
+                suggestions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Features Section -->
+      <section id="features" class="content-section bg-light fade-in-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Key Features</h2>
+          </div>
+          <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">🔊</div>
+              <h3>Spatial Audio Narration</h3>
+              <p>
+                Experience facts that sound like they're coming from the actual
+                landmarks. Using Apple's Phase framework, WhisperWorld creates
+                an immersive, three-dimensional audio experience.
+              </p>
+            </div>
+            <!-- Feature 2 -->
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">💡</div>
+              <h3>Intelligent Context Engine</h3>
+              <p>
+                Our on-device machine learning system determines which landmarks
+                merit attention based on your preferences, novelty, and
+                relevance, ensuring content is delivered at optimal moments.
+              </p>
+            </div>
+            <!-- Feature 3 -->
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">🛡️</div>
+              <h3>Privacy-First Design</h3>
+              <p>
+                Your precise location never leaves your device. WhisperWorld
+                processes location data entirely on-device, delivering
+                personalized experiences while maintaining strict privacy
+                standards.
+              </p>
+            </div>
+            <!-- Feature 4 -->
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">🔋</div>
+              <h3>Battery-Efficient Operation</h3>
+              <p>
+                Sophisticated location and audio optimizations ensure all-day
+                operation without significant power impact, using intelligent
+                geofence batching and adaptive polling.
+              </p>
+            </div>
+            <!-- Feature 5 -->
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">🙌</div>
+              <h3>Hands-Free Experience</h3>
+              <p>
+                No screens to check, buttons to press, or decisions to make.
+                WhisperWorld requires no manual interaction, seamlessly
+                integrating into your daily life.
+              </p>
+            </div>
+            <!-- Feature 6 -->
+            <div class="feature-card">
+              <div class="feature-icon" aria-hidden="true">✨</div>
+              <h3>Personalized Discovery</h3>
+              <p>
+                Content tailored to your interests and history. The more you use
+                WhisperWorld, the better it becomes at delivering facts that
+                match your curiosity and preferences.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mockups Section -->
+      <section id="mockups" class="content-section fade-in-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>App Mockups</h2>
+          </div>
+          <div class="mockups-grid">
+            <div
+              class="mockup-card"
+              aria-label="Mockup of the Discover View screen, showing a map with points of interest."
+            >
+              <div class="mockup-image mockup-discover">
+                <span>Discover View</span>
+              </div>
+              <h4>Discover View</h4>
+              <p>
+                A map-based interface showing nearby points of interest with
+                audio indicators.
+              </p>
+            </div>
+            <div
+              class="mockup-card"
+              aria-label="Mockup of the Now Playing screen, showing audio playback controls."
+            >
+              <div class="mockup-image mockup-playing">
+                <span>Now Playing</span>
+              </div>
+              <h4>Now Playing</h4>
+              <p>
+                Audio playback interface with spatial indicators indicating the
+                direction of the sound source.
+              </p>
+            </div>
+            <div
+              class="mockup-card"
+              aria-label="Mockup of the History screen, showing a list of previously heard facts."
+            >
+              <div class="mockup-image mockup-history">
+                <span>History View</span>
+              </div>
+              <h4>History View</h4>
+              <p>List of previously heard facts with location and timestamp.</p>
+            </div>
+            <div
+              class="mockup-card"
+              aria-label="Mockup of the Settings screen, showing various configuration options."
+            >
+              <div class="mockup-image mockup-settings">
+                <span>Settings</span>
+              </div>
+              <h4>Settings</h4>
+              <p>
+                Preferences and configuration options to customize your
+                experience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Implementation Section -->
+      <section id="tech" class="content-section bg-light fade-in-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Technical Implementation</h2>
+          </div>
+          <div class="tech-grid">
+            <div class="tech-column">
+              <h3 class="subsection-title">Core Technologies</h3>
+              <ul>
+                <li>Core Location & Core Motion</li>
+                <li>AVFoundation & Phase</li>
+                <li>On-Device Core ML</li>
+                <li>SwiftUI</li>
+                <li>Next.js Backend</li>
+              </ul>
+            </div>
+            <div class="tech-column">
+              <h3 class="subsection-title">Architecture & Privacy</h3>
+              <p>
+                WhisperWorld employs a hybrid architecture with heavy emphasis
+                on on-device processing for privacy. Precise GPS coordinates
+                never leave your device. Battery efficiency is achieved through
+                intelligent geofence batching and adaptive location accuracy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Development Timeline Section -->
+      <section id="timeline" class="content-section fade-in-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Development Timeline</h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item complete">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>Concept & Architecture</h4>
+                <p>
+                  Concept validation and technical architecture design complete.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>Core PoC</h4>
+                <p>Core location engine proof-of-concept.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>Audio Pipeline</h4>
+                <p>Basic audio pipeline with spatial positioning.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>API & Caching</h4>
+                <p>Content delivery API and caching system.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>TestFlight Beta</h4>
+                <p>Beta release with initial content set.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>App Store Submission</h4>
+                <p>Final launch.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="content-section bg-light fade-in-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>About the Developer</h2>
+          </div>
+          <div class="about-content">
+            <p>
+              I'm an iOS developer and product designer passionate about
+              creating experiences that blend the digital and physical worlds in
+              meaningful ways. With a background in audio engineering and
+              location-based services, I'm combining these disciplines to create
+              WhisperWorld as a new kind of ambient computing experience.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- WWDC25 Relevance Section -->
+      <section id="wwdc" class="content-section fade-in-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Why WWDC25 Matters for WhisperWorld</h2>
+          </div>
+          <p class="wwdc-intro">
+            WhisperWorld leverages multiple Apple frameworks in novel ways, and
+            WWDC25 insights will be instrumental in optimizing our
+            implementation. I'm particularly interested in advancements in the
+            following areas:
+          </p>
+          <ul class="wwdc-list">
+            <li>Spatial Audio & Phase Framework</li>
+            <li>Core Location & Geofencing</li>
+            <li>On-Device Machine Learning</li>
+            <li>Privacy-Preserving Technologies</li>
+            <li>AirPods Integration</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer id="contact" class="main-footer">
+      <div class="container text-center">
+        <h3>Get in Touch</h3>
+        <p>
+          I'd love to discuss WhisperWorld and how it could evolve with insights
+          from WWDC25.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:ayushjangid110@gmail.com" class="contact-link"
+            >Email</a
+          >
+          <a
+            href="https://github.com/AJ-EN"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-link"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
