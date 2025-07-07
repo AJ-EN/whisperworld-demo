@@ -386,6 +386,28 @@ body.dark-mode .theme-toggle .icon-moon { display: none; }
     font-weight: 500;
 }
 
+.legal-notice {
+    margin-top: 50px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
+
+.legal-notice h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.legal-notice p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+.legal-notice .copyright { margin-bottom: 0; }
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-headline { font-size: 3rem; }
